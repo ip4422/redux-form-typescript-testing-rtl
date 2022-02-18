@@ -1,10 +1,15 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import { reducer as reduxFormReducer } from 'redux-form'
+import { FormStateMap } from 'redux-form'
 
 declare global {
   interface Window {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose
   }
+}
+
+export interface IStore {
+  form: FormStateMap
 }
 
 const reducer = combineReducers({

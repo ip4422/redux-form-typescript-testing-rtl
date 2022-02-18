@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, reduxForm, InjectedFormProps, ConfigProps } from 'redux-form'
+import { Field, reduxForm, InjectedFormProps } from 'redux-form'
 import { validate, asyncValidate } from '../../utils'
 import { InputField } from '../InputField'
 
@@ -12,9 +12,11 @@ export interface IOwnProps {
   isLoading?: boolean
 }
 
-type Props = IOwnProps & InjectedFormProps<IFormData, IOwnProps>
+export type LoginFormProps = IOwnProps & InjectedFormProps<IFormData, IOwnProps>
 
-const UnconnectedLoginForm: React.FC<Props> = (props: Props) => {
+export const UnconnectedLoginForm: React.FC<LoginFormProps> = (
+  props: LoginFormProps
+) => {
   const { handleSubmit, pristine, reset, submitting, isLoading } = props
   return (
     <form onSubmit={handleSubmit}>
@@ -52,5 +54,3 @@ export const LoginForm = reduxForm<IFormData, IOwnProps>({
   asyncValidate,
   asyncBlurFields: ['username']
 })(UnconnectedLoginForm)
-
-export default LoginForm
