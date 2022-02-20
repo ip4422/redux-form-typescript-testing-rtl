@@ -49,7 +49,7 @@ describe('LoginForm testing', () => {
     expect(screen.getByPlaceholderText(/password/i)).toHaveValue('1234')
   })
 
-  it('should not call submit event', () => {
+  it('should not call submit event when <isLoading===true>', () => {
     const onSubmit = jest.fn()
     render(
       <Provider store={mockStoreFactory({})}>
@@ -57,8 +57,6 @@ describe('LoginForm testing', () => {
       </Provider>
     )
 
-    userEvent.type(screen.getByPlaceholderText(/username/i), 'Cartman')
-    userEvent.type(screen.getByPlaceholderText(/password/i), '1234')
     userEvent.click(screen.getByRole('button', { name: 'Sign Up' }))
 
     expect(onSubmit).not.toHaveBeenCalled()
